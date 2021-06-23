@@ -27,8 +27,8 @@
  | category_id               | integer    |  null: false                    |
  | product_status_id         | integer    |  null: false                    |
  | shipping_charges_id       | integer    |  null: false                    |
- | shipping area_id          | integer    |  null: false                    |
- | shipping date and time_id | integer    |  null: false                    |
+ | shipping_area_id          | integer    |  null: false                    |
+ | shipping_date_and_time_id | integer    |  null: false                    |
  | price                     | integer    |  null: false                    |
  | user                      | references |  null: false, foreign_key: true |
 
@@ -48,7 +48,7 @@
  ### Association
  - belongs_to :user
  - belongs_to :item
- - has_one :addresses
+ - has_one :address
 
 
 
@@ -56,10 +56,11 @@
  |  Column                | Type       |   Options                       |
  |------------------------|------------|---------------------------------|
  | postal_code            | string     |  null: false                    |
- | prefectures            | string     |  null: false                    | 
+ | prefectures_id         | integer    |  null: false                    | 
  | municipalities         | string     |  null: false                    |
- | building               | string     |  null: false                    |
- | phone_number           | string     |  null: false                    |
+ | building               | string     |                                 |
+ | address                | string     |  null: false                    |
+ | phone_number           | integer    |  null: false                    |
  | order                  | references |  null: false, foreign_key: true |
 
  ### Association
@@ -68,11 +69,11 @@
 
 
  ## Commentsテーブル
- |  Column                | Type      |   Options                       |
- |------------------------|-----------|---------------------------------|
- | text                   | text      |  null: false                    |
- | item                   | reference |  null: false, foreign_key: true | 
- | user                   | reference |  null: false, foreign_key: true |
+ |  Column                | Type       |   Options                       |
+ |------------------------|------------|---------------------------------|
+ | text                   | text       |  null: false                    |
+ | item                   | references |  null: false, foreign_key: true | 
+ | user                   | references |  null: false, foreign_key: true |
  
  ### Association
  - belongs_to :item
