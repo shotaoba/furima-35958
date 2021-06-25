@@ -9,7 +9,7 @@ class Item < ApplicationRecord
       validates :prefecture_id
       validates :shipping_date_and_time_id
     end
-    with_options numericality:{ only_integer: true, greater_than: 299, less_than,10000000 }, format: { with: /\A[0-9]+\z/ } do
+    with_options numericality: { only_integer: true, in: 300..999999999 }, format: { with: /\A[0-9]+\z/ } do
       validates :price
     end
   end
