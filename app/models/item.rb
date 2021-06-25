@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :description
+    validates :image
     with_options numericality: { other_than: 1} do
       validates :category_id
       validates :product_status_id
@@ -9,9 +10,7 @@ class Item < ApplicationRecord
       validates :prefecture_id
       validates :shipping_date_and_time_id
     end
-    with_options numericality: { only_integer: true, in: 300..999999999 }, format: { with: /\A[0-9]+\z/ } do
-      validates :price
-    end
+    validates_inclusion_of :price, in: 300..999999999
   end
 
   belongs_to :user
