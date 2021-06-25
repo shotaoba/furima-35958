@@ -78,6 +78,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
+      it "priceが半角英数字混合だと登録できない" do
+        @item.price  = 'aaa00'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
       it "category_idが1だと登録できない" do
         @item.category_id  = '1'
         @item.valid?
