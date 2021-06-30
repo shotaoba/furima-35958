@@ -24,12 +24,13 @@ RSpec.describe OrderAddress, type: :model do
       it 'postal_codeが空だと保存できない' do
         @order_address.postal_code = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include("Postal code can't be blank",
+                                                               'Postal code is invalid. Include hyphen(-)')
       end
       it 'postal_codeにハイフンがないと保存できない' do
         @order_address.postal_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it 'prefectureが空だと保存できない' do
         @order_address.prefecture = ''
@@ -49,12 +50,13 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberが空だと保存できない' do
         @order_address.phone_number = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid. Enter your phone number")
+        expect(@order_address.errors.full_messages).to include("Phone number can't be blank",
+                                                               'Phone number is invalid. Enter your phone number')
       end
       it 'phone_numberにハイフンがあると保存できない' do
         @order_address.phone_number = '123-4567-8910'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid. Enter your phone number")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid. Enter your phone number')
       end
       it 'userが紐ついてないと保存できない' do
         @order_address.user_id = nil
