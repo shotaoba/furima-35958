@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe OrderAddress, type: :model do
   before do
     item = FactoryBot.create(:item)
-    @order_address = FactoryBot.build(:order_address, user_id: item.user_id, item_id: item.id)
+    user = FactoryBot.create(:user)
+    @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
     sleep 0.1
   end
 
@@ -34,6 +35,11 @@ RSpec.describe OrderAddress, type: :model do
       end
       it 'prefectureが空だと保存できない' do
         @order_address.prefecture = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
+      end
+      it 'prefectureが1だと保存できない' do
+        @order_address.prefecture = 1
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
       end
