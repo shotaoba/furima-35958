@@ -64,6 +64,21 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone number is invalid. Enter your phone number')
       end
+      it 'phone_numberが12桁以上あると保存できない' do
+        @order_address.phone_number = 1234567891011
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid. Enter your phone number')
+      end
+      it 'phone_numberが全角だと保存できない' do
+        @order_address.phone_number = '１２３４５６７８９１０'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid. Enter your phone number')
+      end
+      it 'phone_numberが半角英数字混合であると保存できない' do
+        @order_address.phone_number = '12345678aaa'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid. Enter your phone number')
+      end
       it 'userが紐ついてないと保存できない' do
         @order_address.user_id = nil
         @order_address.valid?
