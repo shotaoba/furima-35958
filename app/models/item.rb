@@ -10,7 +10,7 @@ class Item < ApplicationRecord
       validates :prefecture_id
       validates :shipping_date_and_time_id
     end
-    validates_inclusion_of :price, in: 300..999_999_999
+    validates_inclusion_of :price, in: 300..9_999_999
   end
 
   belongs_to :user
